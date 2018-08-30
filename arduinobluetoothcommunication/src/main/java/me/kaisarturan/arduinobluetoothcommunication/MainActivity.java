@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
     private final String PIN = "1234"; // my hc-05 default pin
     private final String ADDRESS = "98:D3:31:FC:5F:6F"; // my hc-05 mac bluetooth address
 
-    private ConnectionThread thread = null;
+    private ConnectionThread connectionThread = null;
     private StringBuilder stringBuilder = new StringBuilder();
 
     @Override
@@ -75,8 +75,8 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }else {
-            thread = new ConnectionThread(device,bluetoothConnectionListener);
-            thread.start();
+            connectionThread = new ConnectionThread(device,bluetoothConnectionListener);
+            connectionThread.start();
         }
 
 
@@ -101,7 +101,7 @@ public class MainActivity extends Activity {
         public void onConnected() {
 
             // send data when connect successful
-            if (thread.send("1")){
+            if (connectionThread.send("1")){
                 Log.d(TAG,"Send Success!");
             }
         }
@@ -130,8 +130,8 @@ public class MainActivity extends Activity {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 device.setPin(PIN.getBytes());
                 device.createBond();
-                thread = new ConnectionThread(device,bluetoothConnectionListener);
-                thread.start();
+                connectionThread = new ConnectionThread(device,bluetoothConnectionListener);
+                connectionThread.start();
             }
         }
     };
@@ -141,8 +141,8 @@ public class MainActivity extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (thread!=null){
-            if (thread.close()){
+        if (connectionThread!=null){
+            if (connectionThread.close()){
                 Log.d(TAG,"Close Success!");
             }
         }
