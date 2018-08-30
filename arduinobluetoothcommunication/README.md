@@ -12,7 +12,25 @@ private final String PIN = "1234";
 ```java
 private final String ADDRESS = "98:D3:31:FC:5F:6F";
 ```
+ - Implement BluetoothConnectionListener to get data
+```java
+...
+ConnectionThread connectionThread = new ConnectionThread(device,bluetoothConnectionListener);
+...
+private ConnectionThread.BluetoothConnectionListener bluetoothConnectionListener = new ConnectionThread.BluetoothConnectionListener() {
+    @Override
+    public void onDataReceived(int bytes, byte[] buffer) {
+        ...
+    }
 
+    @Override
+    public void onConnected() {
+        ...
+    }
+};
+...
+```
+ 
 License
 ----
 
