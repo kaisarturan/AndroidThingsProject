@@ -30,6 +30,13 @@ private ConnectionThread.BluetoothConnectionListener bluetoothConnectionListener
 };
 ...
 ```
+ - Send data using
+ ```java
+ ...
+ connectionThread.send("1");
+ ...
+ ```
+ 
  
 License
 ----
