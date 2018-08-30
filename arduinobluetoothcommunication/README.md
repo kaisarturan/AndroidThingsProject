@@ -1,4 +1,4 @@
-# Communication Between Arduino And Android Things
+# Secure Communication Between Arduino And Android Things
 
 Device will connect automatically connect when application start.
 
